@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/x0f5c3/md-codedocs/pkg"
 	"os"
 	"os/signal"
 
@@ -14,11 +15,26 @@ var rootCmd = &cobra.Command{
 	Short:   "This cli tool will parse your markdown document and extract all the codeblocks in it",
 	Version: "v0.0.1", // <---VERSION---> Updating this version, will also create a new GitHub release.
 	// Uncomment the following lines if your bare application has an action associated with it:
-	// RunE: func(cmd *cobra.Command, args []string) error {
-	// 	// Your code here
-	//
-	// 	return nil
-	// },
+	RunE: func(cmd *cobra.Command, args []string) error {
+		// Your code here
+		n, err := pkg.ParseFile("official_docs.md")
+		if err != nil {
+			return err
+		}
+		n.Walk(pkg.TestWalker)
+		if len(pkg.CodeNodes) == 0 {
+			pterm.Warning.Println("No code nodes found")
+		} else {
+			pterm.Success.Printfln("Found %d code nodes", len(pkg.CodeNodes))
+			pterm.Success.Printfln("Example code node:\n%+v", pkg.CodeNodes[14].Parent)
+		}
+		if len(pkg.CodeBlockNodes) == 0 {
+			pterm.Warning.Println("No code block nodes found")
+		} else {
+			pterm.Success.Printfln("Found %d code block nodes", len(pkg.CodeNodes))
+		}
+		return nil
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
