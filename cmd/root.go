@@ -10,14 +10,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "md-codedocs",
-	Short: "This cli template shows the date and time in the terminal",
-	Long: `This is a template CLI application, which can be used as a boilerplate for awesome CLI tools written in Go.
-This template prints the date or time to the terminal.`,
-	Example: `cli-template date
-cli-template date --format 20060102
-cli-template time
-cli-template time --live`,
+	Use:     "md-codedocs",
+	Short:   "This cli tool will parse your markdown document and extract all the codeblocks in it",
 	Version: "v0.0.1", // <---VERSION---> Updating this version, will also create a new GitHub release.
 	// Uncomment the following lines if your bare application has an action associated with it:
 	// RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +41,14 @@ func Execute() {
 	}
 
 	pcli.CheckForUpdates()
+}
+
+func checkForUpdates() {
+	err := pcli.CheckForUpdates()
+	if err != nil {
+		pterm.Error.Println(err)
+		os.Exit(1)
+	}
 }
 
 func init() {
