@@ -6,7 +6,7 @@ require (
 	github.com/pterm/pcli v0.4.6
 	github.com/pterm/pterm v0.12.38
 	github.com/russross/blackfriday/v2 v2.1.0
-	github.com/spf13/cobra v1.4.0
+	github.com/spf13/cobra v1.5.0
 )
 
 require (
