@@ -186,4 +186,4 @@ Simply type md-codedocs help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 28 May 2022**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 05 April 2023**
